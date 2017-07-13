@@ -5,12 +5,10 @@
  */
 package com.wormsim.numerics;
 
-import com.wormsim.numerics.formulae.Formula;
-
 /**
  *
  * @author ah810
  */
-public class Constant extends Formula {
+public class DecisionMap {
 
 }

@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wormsim.numerics.context;
+package com.wormsim.numerics.game;
+
+import com.wormsim.numerics.formula.Formula;
 
 /**
  *
  * @author ah810
  */
-public class ImmutableContext extends Context {
-	public ImmutableContext(Context context) {
-
+public class PlayerOutcome {
+	public PlayerOutcome(Formula formula) {
+		this.formula = formula;
 	}
+	private final Formula formula;
+
 }

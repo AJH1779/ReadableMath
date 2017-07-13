@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wormsim.numerics.context;
+package com.wormsim.numerics;
+
+import java.util.stream.DoubleStream;
 
 /**
  *
  * @author ah810
  */
-public class BasicContext extends Context {
+public class BasicMath {
 
+	public static double sum(double[] values) {
+		return DoubleStream.of(values).sum();
+	}
 }
