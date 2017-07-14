@@ -5,6 +5,8 @@
  */
 package com.wormsim.numerics.game;
 
+import java.util.Collection;
+
 /**
  *
  * @author ah810
@@ -24,4 +26,6 @@ public abstract class Node {
 	public String toString() {
 		return this.getClass().getSimpleName() + ": " + name;
 	}
+
+	public abstract Collection<? extends Choices> resolve(Choices c);
 }

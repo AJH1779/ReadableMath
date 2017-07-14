@@ -77,31 +77,29 @@ public class Main {
 						.addIndependentOutcome((p) -> p == 0, safe)
 						.addIndependentOutcome((p) -> p == 1, long_before_nature);
 
-		// CONTINUE FROM HERE>
-		NaturalNode decide 
-
-		NaturalNode initial = new NaturalNode("Initial")
-						.addOutcome(pa, alone)
-						.addOutcome(pt, together);
+		SimultaneousDecisionNode decide_after_nature = new SimultaneousDecisionNode(
+						"B",
+						"Dishonesty")
+						.addChoice("Short")
+						.addChoice("Long")
+						.addIndependentOutcome((p) -> p == 0, safe)
+						.addIndependentOutcome((p) -> p == 1, worst);
+		NaturalNode together_honesty = new NaturalNode("Honesty")
+						.addOutcome(pg, compete)
+						.addOutcome(pb, decide_after_nature);
 
 		SimultaneousDecisionNode together = new SimultaneousDecisionNode("A",
 						"Together")
 						.addChoice("Honesty")
 						.addChoice("Dishonesty")
-						.addOutcome((p) -> sum(p) == 0, to_honesty)
-						.addDefaultOutcome(decide_before_nature);
+						.addOutcome((p) -> sum(p) == 0, together_honesty)
+						.addOutcome((p) -> sum(p) > 0, decide_before_nature);
 
-		NaturalNode to_honesty = new NaturalNode("Honesty")
-						.addOutcome(pg, to_honesty_good)
-						.addOutcome(pb, to_honesty_bad);
-		SimultaneousDecisionNode to_honesty_bad = new SimultaneousDecisionNode("B",
-						"Bad")
-						.addChoice("Short")
-						.addChoice("Long")
-						.addOutcome((p) -> sum(p) == 2, compete)
-						.addIndependentOutcome((p) -> p == 0, safe)
-						.addIndependentOutcome((p) -> p == 1, best);
+		NaturalNode initial = new NaturalNode("Initial")
+						.addOutcome(pa, alone)
+						.addOutcome(pt, together);
 
-		Game game = new Game(p1, p2);
+		Game game = new Game(initial, p1, p2);
+		game.solve();
 	}
 }
